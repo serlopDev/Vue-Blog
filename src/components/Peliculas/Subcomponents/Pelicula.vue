@@ -1,0 +1,35 @@
+<template>
+
+<article class="article-item" id="article-item">
+  <div class="image-wrap">
+    <img class="imgArt" :src="pelicula.image" :alt="pelicula.title" />
+  </div>
+  <div class="articleText">
+    <h2>{{ pelicula.title }}</h2>
+    <span
+      :class="{
+        dateFilmGreen: pelicula.year > 2011,
+        dateFilmRed: pelicula.year <= 2011,
+      }"
+      >{{ pelicula.year }}</span
+    >
+    <button @click="marcarFavorita(pelicula)" class='film-fav'>Marcar favorita</button>
+  </div>
+</article>
+
+
+</template>
+
+<script>
+
+export default {
+
+  name: "Pelicula",
+  props: ['pelicula'],
+  methods: {
+    marcarFavorita(pelicula){
+      this.$emit('favorita', pelicula);
+    }
+  }
+};
+</script>

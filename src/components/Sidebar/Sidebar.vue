@@ -8,9 +8,9 @@
         <div class="search">
             <h3>Buscador</h3>
             <p>Encuentra el articulo que buscas</p>
-            <form>
-                <input type="text" id="searchBox" class="searchBox">
-                <input type="button" id="searchBtn" class="searchBtn" value="Buscar">
+            <form @submit="goSearch">
+                <input type="text" id="searchBox" class="searchBox" v-model="searchString">
+                <input type="submit" id="searchBtn" class="searchBtn" value="Buscar">
             </form>
         </div>
     </aside>
@@ -19,6 +19,16 @@
 
 <script>
 export default {
-    name: 'Sidebar'
+    name: 'Sidebar',
+    data(){
+        return{
+            searchString: null
+    }
+    },
+    methods: {
+        goSearch(){
+            this.$router.push('/redirect/' + this.searchString);
+        }
+    }
 }
 </script>

@@ -24,9 +24,6 @@
                 <li>
                     <router-link to = '/peliculas' active-class='active'>Películas</router-link>
                 </li>
-                <li>
-                    <router-link to = '/pagina' active-class='active'>Página</router-link>
-                </li>
             </ul> 
         </nav>
         </div>

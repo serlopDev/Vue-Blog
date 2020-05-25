@@ -1,10 +1,64 @@
 <template>
 <div>
 <div class="content">
-    <section id="articles" class="articles">
-        <h2 class="generalTitle">Formulario</h2>
 
-    </section>
+        <div class="div-form">
+                <form class="mid-form" @submit.prevent="mostrarUsuario">
+                    <h2 class="subHeader">Formulario</h2>
+
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="name" v-model="user.name"/>
+                    <div v-if="submitted && !$v.user.name.required">
+                        El campo es obligatorio
+                    </div>
+                    <div v-if="submitted && !$v.user.name.minLength">
+                        El nombre debe contener mínimo 2 letras
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="surname">Apellidos</label>
+                    <input type="text" class="surname" v-model="user.surname"/>
+                </div>
+                <div v-if="submitted && !$v.user.surname.required">
+                        El campo es obligatorio
+                </div>
+                <div v-if="submitted && !$v.user.surname.minLength">
+                        El apellido debe contener mínimo 2 letras
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">Biografía</label>
+                    <textarea name="bio" id="bio" class="bio" v-model="user.bio"></textarea>
+                </div>
+                <div v-if="submitted && !$v.user.bio.required">
+                        El campo es obligatorio
+                </div>
+                <div v-if="submitted && !$v.user.bio.minLength">
+                        El apellido debe contener mínimo 10 letras
+                </div>
+                <div class="form-group">
+                    <input type="radio" class="radio-buttons" value="hombre" checked v-model="user.genre"/>Hombre
+                    <input type="radio" class="radio-buttons" value="mujer" v-model="user.genre"/>Mujer
+                    <input type="radio" class="radio-buttons" value="otro" v-model="user.genre"/>Otro
+
+                </div>
+                <div v-if="submitted && !$v.user.genre.required">
+                        El campo es obligatorio
+                </div>
+
+                <input type="submit" value="Enviar" class="btn-Create">
+                </form>
+
+                <div class='user-div' v-if="user.name && user.surname">
+                    <h2>Usuario</h2>
+                    <p>Nombre: <strong>{{this.user.name}}</strong></p>
+                    <p>Apellido: <strong>{{this.user.surname}}</strong></p>
+                    <p>Biografía: <strong>{{this.user.bio}}</strong></p>
+                    <p>Género: <strong>{{this.user.genre}}</strong></p>
+                </div>
+            </div>
     <Sidebar/>
 </div>
 </div>
@@ -12,9 +66,53 @@
 
 <script>
 import Sidebar from '../Sidebar/Sidebar';
+import { required, minLength } from 'vuelidate/lib/validators'
 
 export default {
     name: 'Formulario',
     components: {Sidebar},
+
+    data(){
+        return {
+
+        submitted: false,
+
+        user: {
+            name: '',
+            surname: '',
+            bio: '',
+            genre: ''
+            }
+        }
+    },
+    validations: {
+        user: {
+            name: {
+                required,
+                minLength: minLength(2)
+            },
+            surname: {
+                required,
+                minLength: minLength(2)
+            },
+            bio: {
+                required,
+                minLength: minLength(10)
+            },
+            genre: {
+                required
+            }
+        }
+    },
+    methods: {
+        mostrarUsuario(){
+            this.submitted = true;
+
+            this.$v.$touch();
+            if(this.$v.$invalid){
+                return false;
+            }
+        }
+    }
 }
 </script>

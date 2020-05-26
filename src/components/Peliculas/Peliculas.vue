@@ -1,23 +1,4 @@
-<template>
-<div>
-<div class="fav-films" v-if="favorita">
-  La película favorita es:
-  <h2>{{favorita.title}}</h2>
-  <div class="image-wrap">
-    <img class="imgArt" :src="favorita.image" :alt="favorita.title" />
-  </div>
-</div>
-<div class="content">
-  <section class="articles">
-    <h2 class="generalTitle">Películas</h2>
-    <div v-for='pelicula in peliculas' v-bind:key='pelicula'>
-      <PeliculaVue v-on:favorita="peliculaFavorita" :pelicula="pelicula"></PeliculaVue>
-    </div>
-  </section>
-  <Sidebar/>
-</div>
-</div>
-</template>
+<template src='./Peliculas.html'></template>
 
 <script>
 import TWCover from '../../assets/images/the-warriors-película.jpg';

@@ -1,15 +1,4 @@
-<template>
-<div>
-    <Jumbotron text='Blog'/>
-<div class="content">
-    <section id="articles" class="articles">
-        <h2 class="generalTitle">Blog</h2>
-        <Articles :articles="articles"/>
-    </section>
-    <Sidebar/>
-</div>
-</div>
-</template>
+<template src='./Blog.html'></template>
 
 <script>
 import Global from '../../Global';

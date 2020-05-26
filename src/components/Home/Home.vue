@@ -1,15 +1,4 @@
-<template>
-<div>
-    <Jumbotron text='Bienvenidos a mi blog' home='true'/>
-<div class="content">
-    <section id="articles" class="articles">
-        <h2 class="generalTitle">Últimos artículos</h2>
-        <Articles :articles="articles"/>
-    </section>
-    <Sidebar/>
-</div>
-</div>
-</template>
+<template src='./Home.html'></template>
 
 <script>
 import Jumbotron from '../Jumbotron/Jumbotron';

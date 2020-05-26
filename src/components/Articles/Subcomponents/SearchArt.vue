@@ -1,20 +1,4 @@
-<template>
-<div>
-    <Jumbotron text='Blog'/>
-<div class="content">
-    <section id="articles" class="articles" v-if="articles">
-        <h2 class="generalTitle">Articulos encontrados</h2>
-        <Articles :articles="articles"/>
-    </section>
-    <section id="articles" class="articles" v-else>
-        <h2 class="generalTitle">La búsqueda no ha dado resultados</h2>
-        <p>El artículo que buscas no existe</p>
-        <Articles :articles="articles"/>
-    </section>
-    <Sidebar/>
-</div>
-</div>
-</template>
+<template src='./SearchArt.html'></template>
 
 <script>
 import Global from '../../../Global';
